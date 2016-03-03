@@ -12,11 +12,15 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
+    "gulp-cssimport": "^3.0.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "cldr-data": "^28.0.3",
+    "globalize": "^1.1.1",
     "react": "^0.14.7",
     "react-bootstrap-datetimepicker": "0.0.22",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-widgets": "^3.2.0"
   }
 }
