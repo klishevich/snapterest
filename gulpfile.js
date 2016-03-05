@@ -12,8 +12,9 @@ gulp.task('default', function() {
 	// .pipe(cssimport(options))
 	// .pipe(gulp.dest('./build/'));
   return browserify('./source/app.js')
-    .transform(babelify)
-    .bundle()
-    .pipe(source('snapterest.js'))
-    .pipe(gulp.dest('./build/'));
+    	.transform(babelify)
+    	.bundle()
+    	.pipe(source('snapterest.js'))
+    	.pipe(gulp.dest('./build/'));
 });
+

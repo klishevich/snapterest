@@ -31563,15 +31563,17 @@ var ReactDOM = require('react-dom');
 var DateTimeField = require('react-bootstrap-datetimepicker');
 
 var DateTimeField2 = require('react-datetime');
-// var moment = require('moment');
-// require('moment/locale/ru');
-// console.log(moment.locale());
+var moment = require('moment');
+require('moment/locale/ru');
+console.log(moment.locale());
 
 DateTimeField3 = require('react-widgets/lib/DateTimePicker');
 var Moment = require('moment');
 require('moment/locale/ru');
 var momentLocalizer = require('react-widgets/lib/localizers/moment');
 momentLocalizer(Moment);
+
+// var ReactDOMServer = require('react-dom/server');
 
 var h1 = React.createElement('h1', { className: 'header', key: 'header' }, 'React');
 var p = React.createElement('p', { className: 'content', key: 'content' }, "This is datapicker");
@@ -31600,6 +31602,15 @@ var reactFragment = [h1, p, dateTimeFieldEl, br, dateTimeFieldEl2, br2, dateTime
 var col = React.createElement('div', { className: 'col-md-3', key: 'col' }, reactFragment);
 var row = React.createElement('div', { className: 'row', key: 'row' }, col);
 var section = React.createElement('div', { className: 'container' }, row);
-ReactDOM.render(section, document.getElementById('react-application'));
+
+var listItemEl1 = React.DOM.li({ className: 'li1', key: 'li1' }, 'List Element 1');
+var listItemEl2 = React.DOM.li({ className: 'li2', key: 'li2' }, 'List Element 2');
+var listItemEl3 = React.DOM.li({ className: 'li3', key: 'li3' }, 'List Element 3');
+var reactListFragment = [listItemEl1, listItemEl2, listItemEl3];
+var listOfItems = React.DOM.ul({ className: 'ul1' }, reactListFragment);
+
+// ReactDOMServer.renderToStaticMarkup(listOfItems);
+
+ReactDOM.render(listOfItems, document.getElementById('react-application'));
 
 },{"moment":3,"moment/locale/ru":2,"react":286,"react-bootstrap-datetimepicker":5,"react-datetime":55,"react-dom":62,"react-widgets/lib/DateTimePicker":66,"react-widgets/lib/localizers/moment":80}]},{},[287]);
