@@ -12,9 +12,8 @@ gulp.task('default', function() {
 	// .pipe(cssimport(options))
 	// .pipe(gulp.dest('./build/'));
   return browserify('./source/app.js')
-    	.transform(babelify)
+    	.transform('babelify', {presets: ['react']})
     	.bundle()
     	.pipe(source('snapterest.js'))
     	.pipe(gulp.dest('./build/'));
 });
-
