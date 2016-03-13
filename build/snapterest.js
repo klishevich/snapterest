@@ -19033,40 +19033,71 @@ module.exports = require('./lib/React');
 },{"./lib/React":26}],159:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Application = require('./components/Application.react');
 
-var ReactClass = React.createClass({
-	displayName: 'ReactClass',
+ReactDOM.render(React.createElement(Application, null), document.getElementById('react-application'));
+
+},{"./components/Application.react":160,"react":158,"react-dom":2}],160:[function(require,module,exports){
+var React = require('react');
+var Stream = require('./Stream.react');
+var Collection = require('./Collection.react');
+
+var Application = React.createClass({
+	displayName: 'Application',
 
 	getInitialState: function () {
 		return {
-			isHeaderHidden: false
+			collectionTweets: {}
 		};
 	},
-	handleClick: function () {
+	addTweetToCollection: function (tweet) {
+		var collectionTweets = this.state.collectionTweets;
+		collectionTweets[tweet.id] = tweet;
 		this.setState({
-			isHeaderHidden: !this.state.isHeaderHidden
+			collectionTweets: collectionTweets
+		});
+	},
+	removeTweetFromCollection: function (tweet) {
+		var collectionTweets = this.state.collectionTweets;
+		delete collectionTweets[tweet.id];
+		this.setState({
+			collectionTweets: collectionTweets
+		});
+	},
+	removeAllTweetsFromCollection: function () {
+		this.setState({
+			collectionTweets: {}
 		});
 	},
 	render: function () {
-		var title = 'Statefull React Component';
-		var headerElement = React.createElement('h1', { className: 'header', key: 'header' }, title);
-		var buttonElement = React.createElement('button', { className: 'btn btn-default', key: 'button',
-			onClick: this.handleClick }, 'Toggle Header');
-		if (this.state.isHeaderHidden) {
-			return React.createElement('div', { className: 'container' }, buttonElement);
-		}
-		return React.createElement('div', { className: 'container' }, [buttonElement, headerElement]);
+		return React.createElement(
+			'div',
+			{ className: 'container-fluid' },
+			React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'col-md-4 text-center' },
+					React.createElement(Stream, { onAddTweetToCollection: this.addTweetToCollection })
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-md-8' },
+					React.createElement(Collection, {
+						tweets: this.state.collectionTweets,
+						onRemoveTweetFromCollection: this.removeTweetFromCollection,
+						onRemoveAllTweetsFromCollection: this.removeAllTweetsFromCollection })
+				)
+			)
+		);
 	}
 });
-// var tweets_array = ["first", "second", "third"];
-var reactComponentElement = React.createElement(ReactClass, { isHidden: false });
-// var listOfItems = <ul className="ul1">
-//                     <li className="li1" key="li1">List Element JSX 1</li>
-//                     <li className="li2" key="li2">List Element JSX 2</li>
-//                     <li className="li3" key="li3">List Element JSX 3</li>
-//                     <li className="li4" key="li4">List Element JSX 4</li>
-//                   </ul>;
 
-var reactComponent = ReactDOM.render(reactComponentElement, document.getElementById('react-application'));
+module.exports = Application;
 
-},{"react":158,"react-dom":2}]},{},[159]);
+},{"./Collection.react":161,"./Stream.react":162,"react":158}],161:[function(require,module,exports){
+
+},{}],162:[function(require,module,exports){
+
+},{}]},{},[159]);
